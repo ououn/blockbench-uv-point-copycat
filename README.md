@@ -5,4 +5,4 @@ Made manual mapping easy! (not really)
 
 Big thx to Gudf.
 
-[![Watch the video](https://github.com/ououn/blockbench-uv-point-copycat/raw/main/plugin-showcase.mp4)
+https://github.com/ououn/blockbench-uv-point-copycat/raw/main/plugin-showcase.mp4
