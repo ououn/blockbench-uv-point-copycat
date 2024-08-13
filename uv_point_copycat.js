@@ -18,8 +18,10 @@
     function writeUVPointpls(){
         let keypls = Mesh.selected[0].getSelectedFaces()[0];
         let uvpls = Mesh.selected[0].getSelectedVertices()[0];
+        Undo.initEdit({elements, uv_only: true});
         Mesh.selected[0]._static.properties.faces[keypls].uv[uvpls][0] = storedspls[0];
         Mesh.selected[0]._static.properties.faces[keypls].uv[uvpls][1] = storedspls[1];
+        Undo.finishEdit('PasteCat');
         storedspls[2] = 1;
         Blockbench.setStatusBarText( 'Pastecat: Placed [' + storedspls[0] + ', ' + storedspls[1] + ']' );
         Canvas.updateUVs();
@@ -41,7 +43,7 @@
         description: 'Easy copy & paste for selected mesh uv coordinate, made manual mapping purfect!',
         about: 'Watch mme get da uv point for ya, it will bee quick, trust mme! Big thx to Gudf.',
         tags: [],
-        version: '0.4.16',
+        version: '0.4.17',
         variant: 'desktop',
         onload() {
             button_c = new Action('uv_point_copy', {
@@ -89,6 +91,14 @@
             button_c.delete();
             button_p.delete();
             button_q.delete();
+        },
+        onuninstall() {
+            Blockbench.showMessageBox({
+                title: 'Byebye',
+                icon: 'fas.fa-cat',
+                message: 'Hava nice day!',
+                buttons: ['K Bye']
+            })
         }
     });
 
