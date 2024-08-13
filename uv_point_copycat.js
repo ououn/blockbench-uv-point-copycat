@@ -10,6 +10,7 @@
         storedspls[0] = Mesh.selected[0]._static.properties.faces[keypls].uv[uvpls][0];
         storedspls[1] = Mesh.selected[0]._static.properties.faces[keypls].uv[uvpls][1];
         storedspls[2] = 0;
+        Blockbench.setStatusBarText( 'Copycat: Keep [' + storedspls[0] + ', ' + storedspls[1] + ']' );
         Canvas.updateUVs();
         UVEditor.loadData();
     }
@@ -20,23 +21,16 @@
         Mesh.selected[0]._static.properties.faces[keypls].uv[uvpls][0] = storedspls[0];
         Mesh.selected[0]._static.properties.faces[keypls].uv[uvpls][1] = storedspls[1];
         storedspls[2] = 1;
+        Blockbench.setStatusBarText( 'Pastecat: Placed [' + storedspls[0] + ', ' + storedspls[1] + ']' );
         Canvas.updateUVs();
         UVEditor.loadData();
     }
 
     function superUVPointpls(){
-        if ( !( storedspls[2] >= 0 && storedspls[2] <=1 ) ) {
-            getUVPointpls();
+        if ( storedspls[2] == 0 ) {
+            writeUVPointpls();
         } else {
-            switch( storedspls[2] ) {
-                case 0:
-                    writeUVPointpls();
-                    break;
-                case 1:
-                    getUVPointpls();
-                    break;
-            }
-            //storedspls[2] = (storedspls[2] ? 0 : 1);
+            getUVPointpls();
         }
     }
 
@@ -47,7 +41,7 @@
         description: 'Easy copy & paste for selected mesh uv coordinate, made manual mapping purfect!',
         about: 'Watch mme get da uv point for ya, it will bee quick, trust mme! Big thx to Gudf.',
         tags: [],
-        version: '0.4.15',
+        version: '0.4.16',
         variant: 'desktop',
         onload() {
             button_c = new Action('uv_point_copy', {
@@ -57,15 +51,6 @@
                 category: 'uv',
                 description: 'Let mme keep dis UV cooconut for ya!',
                 condition: () => Mesh.selected.length == 1 && Mesh.selected[0].getSelectedVertices().length == 1 && Mesh.selected[0].getSelectedFaces().length == 1,
-                /* click: function() {
-                    Blockbench.showMessageBox({
-                        title: 'Helow Thre',
-                        icon: 'fas.fa-cat',
-                        message: '~',
-                        buttons: ['Hi']
-                    });
-                    getUVPointpls();
-                } */
                 click: function() {
                     getUVPointpls();
                 }
