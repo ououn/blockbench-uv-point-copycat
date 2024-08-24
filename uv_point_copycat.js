@@ -3,7 +3,7 @@
     var button_copycat;
     var button_pastecat;
     var button_supercat;
-    //var button_snapcat;
+    var button_snapcat;
     var button_intercat;
 
     let icon_dacat = 'fas.fa-cat';
@@ -11,8 +11,45 @@
     let icon_button_copycatS = 'data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAABN1JREFUeF7lmz1yUzEQx/+yKSg5AIXTcQS6kJMQz3ABJqZOXOMMR8A5CU4FN4AuLtNBQQkRkfTes96XtNKukpfBDcxEWq1+kla7q30KCT99iVNofAawxRxr9R77hO7FmupPWOAvzgGcQuFCnWFNHUxRG+qPeAOFL177PTSW6gN2VBkl2g3oBSgs1Rm2lPFIACrCN4MCEwajKJTSZnDytYA5jig7lAZgAzP5xahyjwAhOHmn6B5znMQgRAHoS5xD4yK6MkTiUTmEBsEd6fcn2IMgAPJACcQJ8ws2SdQJiCxMGEBs63dVJRBnA6DuyMNAwaMwCoC89bszKngUCOd+mG/ARo0DSF19InHODtAFdBoE4Dk8efoWuBWyV7+ewYhOwwA21ts7zZu97bVTK5ww+ve66o11wt4wZA7q1AOQbGXHNBK0BSV16gNIt7JjCLZqhSVjxZqumr8jnayBY9AHwN9qhzmP7AJ7nmeeZ3mHPZ65wKrrubHPfnsFesegBUBsq7W9sSU03lau9Lg73VbUwNhDYQeNdwBeSuwkK6OzKG0A/YiPM+4vAC84Ary+twCei8jTOPEj2DYAufMvNO8CYjreahuA5PkvoLuQyJYd6ALQQoNMWoxa3eeNql/znyIGcKoYPEN4AHDI901VbTm9PH/AB0BLfMip8ZiSGiftAOBhDaBJpLqMsqr+1Y2fb3wFqr+QC7ExhD6A0gZwC4Vrara28gBNqpsTAI0B2qsVjhx/AEUNIDNLVIEwnqQBIbczKkNYEsAOcyxjWdkq93Bsj8Idrk1MMNZHLCjyXGIHQPoGiKx6taom5zC0okFw2am67mGoboIagNwNQJu8/8I0dE7LQ6j0dACk4u1IJijJ1nSCli4lRn6wFmWvwhoAN91khDaWdcz0Jm7fYEJFIE9gr8IaAP8KjCRCk1a/JhhJqzF3gV0wKQDSq+8QxABww3cjP2tlegeynWQYOgJ6c//CmPqL7SpuAscC4AqhnH1XwDD8vB6GErYD+XLdqMbQsn0AgqeXaPx8JMF3PYZcN4bZYQJCoiUprEcNhQvMcNXLFktc3RIA/OzK6PWX/6bnizQRZO05SsUEW8V1gogA0g1gqsHMa781R+ArNF7n9Y87P5WnOU0ACt/MDvgO4FUpACLXbKZyhG4/DICfjAeH6CvwpAEo7P9vAMDv4gAmbQOAW2MEb6CzU03RGGD6AHJ8dN+6EAohmFEbwZZlNtFmB0wfgHkiX9v6gT9YYIZjaFu+I+IM8QEQCqJYrnCoyELZWiYWCD4AIFoKw/A2gzamumJNNisbggSAeOIiN+SmRJrMIywDgHYMwhXng1mUcKKFHcqbiJhtBJ3icY8wPXyNXrEs21IBlwJgkgvBvEDyasXkcbNB4gCMwFgSMyUvEJPFTYgWAQCEX3TcqsWtdmz1c43qgJ2ROwK18JEUVv3nyLtg1J4IJHFbGOQBuGTjYB6vgXD4zM1/8jaFketQ/UCyHSF4yGUAuIHFPqsrWSxREkDNfweFK8ywi9UKdBes5MSbEyvkBxA2m/MXbP2vKYQwP69A2rq1LthZQONYvCJkREOzA9I9NOp0p9/OpsS4X4dMf5rjGu7qt0F2WPkkKZi3QaN49TwmlmR4EjD8GiELwXlXpi7vIQoVH5PRFhpX9TcD/wDWemuu5OPZkwAAAABJRU5ErkJggg=='
     let icon_button_pastecat = 'data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAAA99JREFUeF7tmz2y1DAMx+WOkgNQsB1HoIM9CewM9+C9k7CchEcFN4COLV8HBb1Bxsp4s3Yk2/9kM2wyA/MKf0g/S7KkTRxVPN77t0T0gYiORHTvnDtVTJ9tqPf+ORG9JyKW7845d2/dzFkHeu9fE9GnZDwrf3DOPVjXmGNcRi7ehuXiQ1IfE4BI+EdhNfNmqjSVAwrKyyo7i4VaAbDybGalZ3EIivIsJ1voXoOgAvDes2/dGQ7HRNywjjpEsch0vhoPJgFUbGQmrmqnDKiUiVebPBgNgGb6Y3FV4gAAVouUrSZdoQigwvTHOs3mCga/r45RUwBqT99EvMcCvPdwmbIAkoSnVV74rdBx+qJDVqYSAM72OKtqfR6cc/vWybl53ntOwjgZa32yMl0AaIiyJYFgsWBOmXIAaqNsCcDROXdoPa50nve+1yKLbpAD0GtqqexZK4j+nGaWfFWFwmqcuQF8P5Xnwg3OAABNLd2UreBNTKWn0ul0jgDhQusdET1DWFJc4+xQxgDGFV/Pvr+I6GnPAsncRyJ6AlqP64Ohgh0DQPk/SO9ZljnLVscAkP4/i/SARc/iwBiAB2yw+iX+dowGvYc/ZgqAa4UxBMIUgPT71io0Uq4hLU4B3EIAFIhDkpYCuIUAKACGQJgCQAVAvmPZxKpb5jEOSbL0KhY/PQVQyW1OzrldyDz5P2QATCMswmljKsyZJIOwZpKWrUMgRAMYyE5JEIEPQ6zWAiiJL+oUAYC6AdQ+QKGyk9RUdR10ZSgAUDdAKwA5GVMvv6M1llpASIkFAKre7gXAAlrWQBRt4SoUAKgr0CK8BbbaTQJYQZBVAMCuQK0XaPRhtalqXGcqFoeAvVYA6g8sgM41w9k5ZA5g9F+LC6j9RFCrLABABJSLFLNke0bTXQrAngGgcgBrBF+TBRwYACoHWBoA4uBWC8ASBBEHd2QLsJikpbhAWoAFACJ3CQC+ENFLq4bKuEUSIeDN9ZUBfCOiFysCYDl9hPmzyt8ZwE/QDw4IF1CLIfC1fboGAD69tMsjnaPPMZEqdpLAyvOB/V4cQKurga9rEeORAbS+dpLTRQ2CNQBikibtsJqp1rEBAKoStMaAqd4eN0L54d6f/LMq0zLuKgCQeUeL0mdzrmEBG4DOF7C6Tz1dYLOAKwTBzQU2F+h7CXOLAUgCWxDcguDyqfB2C/zPt8C/X1sKb4cAW1mwOIgOgiJY7iszru56vkGAKT1OhZH9gFmEnHHR0BJbVVCaUdl8Ayf22RgC8gWkhfVo3m54P0C+vL4lCOEdhPQ9QW5VMYglWlHNRwaYyF+Vf5RvBv4A3S6NddYiR0oAAAAASUVORK5CYII=';
     let icon_button_pastecatS = 'data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAABCJJREFUeF7tmz1y1DAUx//KUlByAIqk4wh0SU5CdoYLMFnqJDXJcAQ2J2Gp4AbQxWU6KCgBgSR7LX/qyfrb8RB7JjPZGX08/d6Hnp5shYhH3+AMGh8AbLHClXqDLKL7aE31exziNy4AnEHhUp3jSjqZkjbU73AChY9e+wwaa/UWO+kYY7RrkQtQWKtzbCXziQDkhO9aB4yYTCJQTJvWxRcDrHAksVAZgGuYxR92CvcAEHoX7wTNsMJpCEIQgL7BBTQug5oREg+OI2jQa5F+f0E86AUgniiCuGB9vU0iZQICiukHEDL9uqgC4skApBZZTtTrCp0AxKZfX9GIriDw+3a+PTGqG0Cs9oXEUyxAjyBTKwAv4Rkm7wi7wmDtFyvokKkdwLXN9s6Grd722qkNThP6N7rqa5uEnSSM2SpTA0B0lO2SiBgLxpSpCSA+ynYh2KoN1gka23fV6RbpxmpxgyaAdFMr19xhBdafD7zM8g8yPHEHq3rmluz7VQ003KACgGZq1WxsDY1XeSrdnU5XBTUwMijsoPEawHOGJdkxakqpAmie+FLm/QHgWcoAXt97AE8p42mc+ifYKgCe/5PWPcIwtWy1CoDp/yPIThqyEgfqADRpklkPozb/6kb5s/9nlAA4VwxeICwBlPW+uYrNk8vLB3wAssIHT4yHHGmfpJUAHkcALKDvA6EPgBUAd1hhHarFtanfxqFfeYZ4gGNoe/hJOQB1WVmmNjhy2TEAZgD0IyzDxvNU2GSSBoQ0kwxPnQdCNoA92T4JLHDvkVoL4UhczloBwNsBgnWAjpOdu1wRuA77ZOgsgJcCDwVQaEZUy08ojZUWkKfEDgDrvC2oBAnmCkPkHNrsVlgASC03NbaXrhggABCs5edK67+tCodBC7oAQNsCQ7VAEQBBUVU0Tj8EG7DnCiB4xZ1cuXZB90gxcwBJNViouWA9kVIqswA4AYUbA4BpAJjqEMWUSl8LR3DZjjMNABNriDmAwTAdAEbyNlsAgltmkuK2ShiUwruqa8GxAAkAzvF9a1zgMzReSlcYaMcBELhWo+1cCl+MBXwF8GI2ACTa551dvhkA3ykXDhwXCB6GqNu2QjY9AKc9v8rjXrZU+IQD7PpqA9TFO4X9nBzAUFcjRf369PcmCN5B00pNwSAYAyBP0opyWExXadt7YwGsk6BsG6xfjfuiahznP03JrPiTLia+ncYDAJClwvGLGdhjegtYACS/gDVQ1+3dFguYPAguLrC4QOpLmEsMYBJYguASBKdOhZdd4P/eBXrv9WilLGIUZAdBJ5pq+crMHblTvkEgLrscygBIvWUdRbCJBrUlsVklJhMtvJhmV9wNGgi8F5AmXsXg6czdoOmc19uMfz4eCPk7COV7gu6W2HyCPn4parDKKB230Lgtvhn4C90mL67u8Z6IAAAAAElFTkSuQmCC';
-    let icon_button_snapcat = 'data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAABP9JREFUeF7NWzFyUzEQfYopKDkARdJxBLqQkxDPcAEmpk5S4wxHwDkJ7uAG0MV06aCgBZGVvvz1v7+0K2vlxDPMMBNptXraXe2+1Tco+NkbnMPiM4AVZrg277EpmN5sqP2EY/zFJYBzGFyZC1xLFzPSgfYj3sDgSzR+A4u5+YC1VEaLcRN6AQZzc4GVZD0RAB3Cd5MCCxaTKFQyZnLzQcAMJxILlQGwBG3+OKncI4CQ3bxXdIMZzjgQWADsDS5hccWejBBxVo5gQNYi4/mCeJAFQLxQAeKC/WWHFOoEMAeTB4Az/bGqAsSrAZBaZL9Q1hWSAIhNf7yjhq4g8PtpfDMxKg1A6ekLEa+xANtAp0kAooRnP30b3Ap7n37YQUKnaQCWLts732/3btbaLHBWMX9nql26JOxNhcxJnXYAKI6yKY0UY0FLnXYBKI+yKQhWZoF5xYltp9p6i/SyJtxgF4B6U+v3nLAC589HUWb5Dxs884XVOHOr9v3hCey4wQAANVMbZmNzWLztUul0Oj1UlMDYwGANi3cAXmpYkpMxOpQhALsVX826vwG8qBEQzb0H8FxFnsVZXMEOAdDzf6V9NxAzylaHAGj6fwPdlUQO4sAYAKu0yJMWYxYPvFH32/6nSQB8qjBEgbAHoOf7nqraenpF+UAMgIz40FPjMSVtk7QegPYBcAXjkp2f6BKfkPS4ZId+lBxZnHY5vzRn2AfIbSCMAWgVAPei0LsMkKjumgIoBc7GLHDis2MATQKgoCSmdTnSsgOCqlNdi+gCYQsAsv2CxIbWmGGeAqM7ICqH9UAYAKB5A4xSzdgGs0QLwyeqg9BZqLcArRSY2wRX1jIcQjVTNSzSXAvNA8ApJouz28CSGm6XDx2G3C9jPWFaBS84XtldhQGAWrqJwinblGQBkAROncMiMNxVGACovwI58/cd3On+Yp+Ys01NRTdwFqsJAK885wISC9DkLCjmqOUAEuU5Xl8iQ/PGcgBoISpTnqs3sm2szvyJXtPJDinoKvqUiAUuiOJTr0/0EiGfB88JAO5UZJcgjRL2Aro1qfGiuyG5pn6kOgAGVzjCLZffb+907896Jl0KALAySklQv3QhCC4R832CU1jn2zr+LQNjRS7wFRavZeOFo/YAYWsVPigHq2jrIgbfyAK+A3gl3FrJsDUMbnGEtdQlxsK7AE2cQCsgfhAAv1QaDmloNICgQK0fNA02hwAghmYFi1vqA5ZaRaOb48+hAagPlsa9XdByiXsKgnewagJLYkQYSw3Qa6lVKBMj92QB9ZXgPtvenZOlxeLhasmbhToAU+9zyVzDPw4q0etOlztwhRW3Uvd3LQvIskGFZit6X/S0AJCxQXLWSVBTaGWwWhbAVoJFCsu4wdqXbL4eUgqCrNkWld0SbkGplacFAOKe+1T8KSJeZACo3F5qAEi4AHHgYlxAjcZTdAE6dL04wDVI9KhxtRjgrZ5TXEZo5q9UmQxhFqAXBMOCbCLDvvnN+L+m6QeF9WJAjzmb0iZjQa6x6hsruh1i5RgQmx0PQqDB6MUI/TLEScvHEi0sYFj/V35gqVb4JKJCawD6kreAHuuSJnorVPPNgigQEgD5bwJFYooHha9N4+ZHSdVYvGBigqPEVHJqLY0OLGcdeoOaNNOB91CxHN06jlzw7TF91rVCt+ZT4zdCDgTfkAgcvBbp2HwfeyzgmOnwzcB/V694rln6lREAAAAASUVORK5CYII=';
+    let icon_button_supercat = 'data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAABP9JREFUeF7NWzFyUzEQfYopKDkARdJxBLqQkxDPcAEmpk5S4wxHwDkJ7uAG0MV06aCgBZGVvvz1v7+0K2vlxDPMMBNptXraXe2+1Tco+NkbnMPiM4AVZrg277EpmN5sqP2EY/zFJYBzGFyZC1xLFzPSgfYj3sDgSzR+A4u5+YC1VEaLcRN6AQZzc4GVZD0RAB3Cd5MCCxaTKFQyZnLzQcAMJxILlQGwBG3+OKncI4CQ3bxXdIMZzjgQWADsDS5hccWejBBxVo5gQNYi4/mCeJAFQLxQAeKC/WWHFOoEMAeTB4Az/bGqAsSrAZBaZL9Q1hWSAIhNf7yjhq4g8PtpfDMxKg1A6ekLEa+xANtAp0kAooRnP30b3Ap7n37YQUKnaQCWLts732/3btbaLHBWMX9nql26JOxNhcxJnXYAKI6yKY0UY0FLnXYBKI+yKQhWZoF5xYltp9p6i/SyJtxgF4B6U+v3nLAC589HUWb5Dxs884XVOHOr9v3hCey4wQAANVMbZmNzWLztUul0Oj1UlMDYwGANi3cAXmpYkpMxOpQhALsVX826vwG8qBEQzb0H8FxFnsVZXMEOAdDzf6V9NxAzylaHAGj6fwPdlUQO4sAYAKu0yJMWYxYPvFH32/6nSQB8qjBEgbAHoOf7nqraenpF+UAMgIz40FPjMSVtk7QegPYBcAXjkp2f6BKfkPS4ZId+lBxZnHY5vzRn2AfIbSCMAWgVAPei0LsMkKjumgIoBc7GLHDis2MATQKgoCSmdTnSsgOCqlNdi+gCYQsAsv2CxIbWmGGeAqM7ICqH9UAYAKB5A4xSzdgGs0QLwyeqg9BZqLcArRSY2wRX1jIcQjVTNSzSXAvNA8ApJouz28CSGm6XDx2G3C9jPWFaBS84XtldhQGAWrqJwinblGQBkAROncMiMNxVGACovwI58/cd3On+Yp+Ys01NRTdwFqsJAK885wISC9DkLCjmqOUAEuU5Xl8iQ/PGcgBoISpTnqs3sm2szvyJXtPJDinoKvqUiAUuiOJTr0/0EiGfB88JAO5UZJcgjRL2Aro1qfGiuyG5pn6kOgAGVzjCLZffb+907896Jl0KALAySklQv3QhCC4R832CU1jn2zr+LQNjRS7wFRavZeOFo/YAYWsVPigHq2jrIgbfyAK+A3gl3FrJsDUMbnGEtdQlxsK7AE2cQCsgfhAAv1QaDmloNICgQK0fNA02hwAghmYFi1vqA5ZaRaOb48+hAagPlsa9XdByiXsKgnewagJLYkQYSw3Qa6lVKBMj92QB9ZXgPtvenZOlxeLhasmbhToAU+9zyVzDPw4q0etOlztwhRW3Uvd3LQvIskGFZit6X/S0AJCxQXLWSVBTaGWwWhbAVoJFCsu4wdqXbL4eUgqCrNkWld0SbkGplacFAOKe+1T8KSJeZACo3F5qAEi4AHHgYlxAjcZTdAE6dL04wDVI9KhxtRjgrZ5TXEZo5q9UmQxhFqAXBMOCbCLDvvnN+L+m6QeF9WJAjzmb0iZjQa6x6hsruh1i5RgQmx0PQqDB6MUI/TLEScvHEi0sYFj/V35gqVb4JKJCawD6kreAHuuSJnorVPPNgigQEgD5bwJFYooHha9N4+ZHSdVYvGBigqPEVHJqLY0OLGcdeoOaNNOB91CxHN06jlzw7TF91rVCt+ZT4zdCDgTfkAgcvBbp2HwfeyzgmOnwzcB/V694rln6lREAAAAASUVORK5CYII=';
     let icon_button_intercat = 'data:image/png;base64, iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAAAXNSR0IArs4c6QAABCtJREFUeF7tmz2W1DAMx+WOkgNQMB1HoGROAvMe99jdk7B7EoYKbgAdU263FPSGv9cOjuMPKVGGZDIpeLy3/pB/lmRJ9hgSfNbaD0T0iYjuiejOGHMSdJ+tqbX2NRHdEBHkuzXG3HEnM9yG1tp3RPQ5ao/FH4wxR+4Yc7TLyIVpIBc2qfmxAHjCPwujsSdrSiNsUFh8GGXH0VAuACwealb6zg6hsXjICQ3dtyA0AVhrYVu3jM1hEWeM02zS0Mi4f9MfVAEIJmITb66u0UAoE0arbkwLQEv1U3GbxBUAcDUyTFU1hSIAgeqna5rNFBh2L/ZRNQDS3WcRn6IB1lp1mbIAooBnrLzqp8KE3Q9ryMpUAoBoD1HV2O9ojNmP7ZzrZ61FEIZgbOyXlWkAYISXLQmk5gvmlCkHQOplSwDujTGHsdsV97PWTtXIohnkAExVtVj2rBZ4e44jSxxVLrFKIzcF24/lGZhBD4CiqsWTQgve+1C6Fk7HfQIQJFofieiVhib5MXqbkgJIM74p8/4iopdTBoj6PhLRC6XxkB90GWwKQMv+ldY9yzC9aDUFoGn/s0ivMGjPD6QArMIEix/ib8WoW3f3n5kc4FJhdI4wBhDqfUsVWlOuLiyOAWzBAQaIXZAWA9iCAwwAOkcYA9iEA/QETsaYnYs88c/GHGDQAucIrwC8BkhOAMT26WVIuJXR9NRzj+VOgqAB3BOgs51UugnlqrELxSbE6TYSLaTN3ITLhcQBADffLlZ6FCo2UhC9pMZrMncj0dwdhQEA9whcEoBBrUFYy3RrCQC4R+AlAXDmvGUAMIOdEcYAl6QBHQBJFUgKAJ76IdT7fGkslNvD3zDmydf+IBTKZ5Ap583Rxz1+yL1L8JsZ92udCntogCQGkALIeWrc7mCcYsXYw8gJL7p7ZBzNBwCQHB1SADlPfYPz1y8Su40C6JfCjuauwsKznMHdv99MrCd8rZjg/AD8eZ0zO7xBeIjL4o3NmXoMPscCwksHDQ3ArrCf21TUWA3AVyJ6ywzDNADUTG5g45UN0gDwDRrwnYjenBFALeocXKdVnLQGgB8A8CS4cNDQgBqAwfiVqzENAKetA/i9dQCPACB5dnJpJuAAcDNB+MkrgNLTl0JBJOeoluQEaesasGoAuURLktm60GfNGjB49jbmOc2aAWQfYQlPtVVrwHNFJ/nVSpRBIm1GAaVUXFE3gVw8kROwFndIQmEsYJBCZ+4rqhVvqQlgfFRy0t8KobCRe1mKn62gJBYXKFDpqX3xC1OkzqFEVurjfrqTe2bHqXaNAcBMHP9bMwBpVYI64S4RgIj8FYAwFxDRXUPjqwZcNUBWD1iDVktkdCUx7tsAycBraXsEAISKrTu0tSxIKmf3PiC88WEHENKZFtj+3xshCOc1ASAA4ZJBuPA83EX+AXjHU4TRd/KNAAAAAElFTkSuQmCC';
+
+    function newElement(ele, methodTarget = [], eleId = 0, eleClasses = [], eventFunction = [], setAttrubutes = [], setInnerHTML = "//invalid" ) {
+        let newEle = document.createElement(ele);
+
+        if ( eleId !== 0 ) { newEle.id = eleId }
+        if ( eleClasses.length > 0 ) { newEle.classList.add(...eleClasses) }
+        if ( eventFunction.length > 0 ) {
+            for (let i = 0; i < eventFunction.length; i++) {
+                newEle.addEventListener( eventFunction[i][0], eventFunction[i][1] );
+            }
+        }
+        if ( setAttrubutes.length > 0 ) {
+            for (let i = 0; i < setAttrubutes.length; i++) {
+                newEle.setAttribute( setAttrubutes[i][0], setAttrubutes[i][1] );
+            }
+        }
+        if ( setInnerHTML !== "//invalid") {
+            newEle.innerHTML = setInnerHTML;
+        }
+
+        switch(methodTarget[0]) {
+            case "body.append":
+                document.body.append(newEle);
+                break;
+            case "id.append":
+                document.getElementById(methodTarget[1]).append(newEle);
+                break;
+            case "id.prepend":
+                document.getElementById(methodTarget[1]).prepend(newEle);
+                break;
+            case "querySelector.append":
+                document.querySelector(methodTarget[1]).append(newEle);
+                break;
+            case "querySelector.prepend":
+                document.querySelector(methodTarget[1]).prepend(newEle);
+        }
+    }
 
     function getUVPointpls(){
         let keypls = Mesh.selected[0].getSelectedFaces()[0];
@@ -50,16 +87,26 @@
         }
     }
 
-    /* function snapUVPointpls(){
-        //self uv point reference
-        //snap distance
+    var snapCircleisNew = true;
+    var pointInfo = {};
+    var meshListpls = [];
+    var redeemCode = { self: [ 0, 0, -1 ], cat: [ 0, 0, -1 ] };
+    function snapUVPointpls(){
+        let chec = false;
+        if ( UVEditor.isFaceUV() && Mesh.selected.length == 1 && Mesh.selected[0].getSelectedVertices().length == 1 && Mesh.selected[0].getSelectedFaces().length == 1 ) {
+            chec = true;
+        }
+        if ( chec == false ) return;
+
+        redeemCode = { self: [ 0, 0, -1 ], cat: [ 0, 0, -1 ] };
+
         let keypls = Mesh.selected[0].getSelectedFaces()[0];
         let uvpls = Mesh.selected[0].getSelectedVertices()[0];
-        let pointInfo = { thisPt: [ 0, 0 ], thisVertices: [], thisTexture: 'null'};
-        pointInfo.thisPt = Mesh.selected[0].faces[keypls].uv[uvpls]; // current selected uv point
-        pointInfo.thisTexture = Mesh.selected[0].faces[keypls].texture; // current selected uv texture id
-        pointInfo.thisVertices = Mesh.selected[0].faces[keypls].uv; // uv points of current selected face, minus current selected uv point
-        //delete pointInfo.thisVertices[uvpls]; messed things up idk why
+        pointInfo = { thisPt: [ 0, 0 ], thisVertices: [], thisTexture: 'null', thisMesh: 'null' };
+        pointInfo.thisMesh = Mesh.selected[0].uuid;
+        pointInfo.thisPt = Mesh.selected[0].faces[keypls].uv[uvpls]; 
+        pointInfo.thisTexture = Mesh.selected[0].faces[keypls].texture; 
+        pointInfo.thisVertices = Mesh.selected[0].faces[keypls].uv; 
         pointInfo.thisVertices = Object.keys(pointInfo.thisVertices).filter(objKey =>
             objKey !== uvpls).reduce((newObj, key) =>
             {
@@ -68,8 +115,7 @@
             },{}
         );
 
-        //let meshListpls = [ { meshId: 'null', meshFaces: [ { faceKey: false, textureId: false, uvPt: [ [0,0], [0,0] ] } ] } ];
-        let meshListpls = [];
+        meshListpls = [];
         meshListpls[0] = { meshFaces: [] };
         meshListpls[0].meshFaces[0] = { faceKey: false, textureId: false, uvPt:[] };
 
@@ -77,12 +123,10 @@
             meshListpls[i] = { meshId: false, meshFaces: [] };
             meshListpls[i].meshId = Mesh.all[i].uuid;
 
-            // remove face with no texture assigned from list
             for ( let i2 = 0, len2 = Object.keys(Mesh.all[i].faces).length - 1; i2 <= len2; i2++) {
                 meshListpls[i].meshFaces[i2] = { faceKey: false, textureId: false, uvPt:[] };
                 let faceKeyNameListpls = Object.getOwnPropertyNames(Mesh.all[i].faces);
                 meshListpls[i].meshFaces[i2].faceKey = faceKeyNameListpls[i2];
-                //UVEditor.getTexture().uuid;
                 meshListpls[i].meshFaces[i2].textureId = Mesh.all[i].faces[faceKeyNameListpls[i2]].texture;
 
                 for ( let i3 = 0, len3 = Object.keys(Mesh.all[i].faces[faceKeyNameListpls[i2]].uv).length -1; i3 <= len3; i3++ ) {
@@ -92,22 +136,161 @@
             }
         };
 
-        meshListpls = meshListpls.filter(e => e.meshId !== Mesh.selected[0].uuid );
-        meshListpls = meshListpls.map( e => ({
+        let tempList = meshListpls;
+        tempList = tempList.filter(e => e.meshId == pointInfo.thisMesh );
+        tempList = tempList.map( e => ({
             meshId: e.meshId,
-            meshFaces: e.meshFaces.filter( face => face.textureId !== false )
+            meshFaces: e.meshFaces.filter( face => face.faceKey !== keypls )
         }));
 
+        meshListpls = meshListpls.filter(e => e.meshId !== pointInfo.thisMesh );
+        meshListpls.push( tempList[0] );
 
-        console.log( pointInfo );
-        console.log( meshListpls );
-        //console.log(  );
+        meshListpls = meshListpls.map( e => ({
+            meshId: e.meshId,
+            meshFaces: e.meshFaces.filter( face => face.textureId !== false && face.textureId == pointInfo.thisTexture )
+        }));
+        meshListpls = meshListpls.filter(e => e.meshFaces.length !== 0 );
 
-        //console.log( UVEditor.getBrushCoordinates(e, this.getTexture() ) );
-        //console.log( Mesh.all );
-        //console.log( Mesh.all[0].faces.getFaceKey() );
-        //console.log( Mesh.selected[0].faces[keypls].texture );
-    } */
+        let getCircleR = uvToFrame( setting_snapPower.value, setting_snapPower.value );
+        if ( snapCircleisNew == true ) {
+            newElement( 'div', ['id.append', 'uv_frame'], 'snapCirclePls', ['snapCat-collection'], 0, [ ['style','visibility:visible;position:absolute;width:'+getCircleR[0]*2+'px;height:'+getCircleR[0]*2+'px;border: 1px solid red;border-radius:'+getCircleR[0]+'px' ] ] );
+
+            newElement( 'div', ['id.append', 'uv_frame'], 'snapLine1', ['snapCat-collection'], 0, [ ['style','visibility:visible;position:absolute;width:50px;height:1px;border: 1px solid green;top:0;left:0;transform-origin:0 0'] ] );
+            newElement( 'div', ['id.append', 'uv_frame'], 'snapLine2', ['snapCat-collection'], 0, [ ['style','visibility:visible;position:absolute;width:50px;height:1px;border: 1px solid blue;top:0;left:0;transform-origin:0 0'] ] );
+            snapCircleisNew = false;
+        } else {
+            snapDrawToggle( '.snapCat-collection', 'visible');
+        };
+
+        document.getElementById('snapCirclePls').style.width = getCircleR[0]*2 + 'px';
+        document.getElementById('snapCirclePls').style.height = getCircleR[0]*2 + 'px';
+        document.getElementById('snapCirclePls').style.borderRadius = getCircleR[0] + 'px';
+        let vertexStyle = document.getElementsByClassName('uv_mesh_vertex selected')[0].style;
+        let selectedFaceStyle = document.getElementsByClassName('mesh_uv_face uv_face selected')[0].style;
+        document.getElementById('snapCirclePls').style.left = Number( selectedFaceStyle.left.slice(0, -2) ) + Number( vertexStyle.left.slice(0, -2) ) - getCircleR[0] + 'px';
+        document.getElementById('snapCirclePls').style.top = Number( selectedFaceStyle.top.slice(0, -2) ) + Number( vertexStyle.top.slice(0, -2) ) - getCircleR[0] + 'px';
+
+        let offsetL1 = uvToFrame( 0, 0 );
+        let offsetL2 = uvToFrame( 0, 0 );
+        document.getElementById('snapLine1').style.left = offsetL1[0] + 'px';
+        document.getElementById('snapLine1').style.top = offsetL1[1] + 'px';
+        document.getElementById('snapLine2').style.left = offsetL2[0] + 'px';
+        document.getElementById('snapLine2').style.top = offsetL2[1] + 'px';
+
+        document.getElementById('snapLine1').style.transform = 'rotate(180deg)';
+        document.getElementById('snapLine2').style.transform = 'rotate(235deg)';
+    }
+
+    function uvToFrame( u, v ) {
+        let texUV = [ UVEditor.getTexture().width, UVEditor.getTexture().height ];
+        let offsetLT = [ Number( document.getElementById('uv_frame').style.width.slice(0, -2) ), Number( document.getElementById('uv_frame').style.height.slice(0, -2) ) ];
+        return [ offsetLT[0] * u / texUV[0], offsetLT[1] * v / texUV[1] ];
+    }
+
+    function snapFireOnce() {
+        let chec = false;
+        if ( UVEditor.isFaceUV() && Mesh.selected.length == 1 && Mesh.selected[0].getSelectedVertices().length == 1 && Mesh.selected[0].getSelectedFaces().length == 1 ) {
+            chec = true;
+        }
+        if ( chec == false ) return;
+
+        let x2 = pointInfo.thisPt[0];
+        let y2 = pointInfo.thisPt[1];
+
+        let keypls = Object.keys( pointInfo.thisVertices );
+        for ( let i = 0, len = keypls.length; i < len; i++  ) {
+            let x1 = pointInfo.thisVertices[keypls[i]][0];
+            let y1 = pointInfo.thisVertices[keypls[i]][1];
+            let gotDis = getDistance(x2, y2, x1, y1);
+            pointInfo.thisVertices[keypls[i]][2] = gotDis;
+
+            if ( redeemCode.self[2] == -1 ) {
+                redeemCode.self[0] = x1;
+                redeemCode.self[1] = y1;
+                redeemCode.self[2] = gotDis;
+            } else if ( gotDis < redeemCode.self[2] ) {
+                redeemCode.self[0] = x1;
+                redeemCode.self[1] = y1;
+                redeemCode.self[2] = gotDis;
+            }
+        }
+
+        for ( let i = 0, len = meshListpls.length; i < len; i++ ) {
+            for ( let j = 0, len2 = meshListpls[i].meshFaces.length; j < len2; j++ ) {
+                for ( let k = 0, len3 = meshListpls[i].meshFaces[j].uvPt.length; k < len3; k++ ) {
+                    let x1 = meshListpls[i].meshFaces[j].uvPt[k][0];
+                    let y1 = meshListpls[i].meshFaces[j].uvPt[k][1];
+                    let gotDis = getDistance(x2, y2, x1, y1);
+                    meshListpls[i].meshFaces[j].uvPt[k][2] = gotDis;
+
+                    if ( redeemCode.cat[2] == -1 ) {
+                        redeemCode.cat[0] = x1;
+                        redeemCode.cat[1] = y1;
+                        redeemCode.cat[2] = gotDis;
+                    } else if ( gotDis < redeemCode.cat[2] ) {
+                        redeemCode.cat[0] = x1;
+                        redeemCode.cat[1] = y1;
+                        redeemCode.cat[2] = gotDis;
+                    }
+                }
+            }
+        }
+
+        let keypls2 = Mesh.selected[0].getSelectedFaces()[0];
+        let uvpls2 = Mesh.selected[0].getSelectedVertices()[0];
+
+        let crushNow = redeemCode.cat;
+        if ( setting_snapSelf.value == true && redeemCode.self[2] < redeemCode.cat[2] ) {
+            crushNow = redeemCode.self;
+        }
+
+        if ( crushNow[2] <= setting_snapPower.value ) {
+
+            Mesh.selected[0].faces[keypls2].uv[uvpls2][0] = crushNow[0];
+            Mesh.selected[0].faces[keypls2].uv[uvpls2][1] = crushNow[1];
+
+            Canvas.updateUVs();
+            UVEditor.loadData();
+        }
+
+        console.log( '[pointInfo] with distance', '\n', pointInfo );
+        console.log( '[meshListpls] with distance', '\n', meshListpls );
+        console.log( '[redeemCode]', '\n', redeemCode );
+    }
+
+    function getDistance(x2, y2, x1, y1) {
+        return Math.sqrt( Math.pow( x2 - x1, 2 ) + Math.pow( y2 - y1, 2 ) );
+    }
+
+    function snapUVPointOffpls() {
+
+        snapDrawToggle( '.snapCat-collection', 'hidden');
+        document.getElementById('uv_viewport').removeEventListener( 'mousemove', snapUVPointpls );
+        document.getElementById('uv_viewport').removeEventListener( 'mouseup', snapFireOnce );
+        document.getElementById('uv_viewport').removeEventListener( 'mouseenter', snapDrawOn );
+        document.getElementById('uv_viewport').removeEventListener( 'mouseleave', snapDrawOff );
+    }
+
+    function snapDrawOn() {
+        let chec = false;
+        if ( UVEditor.isFaceUV() && Mesh.selected.length == 1 && Mesh.selected[0].getSelectedVertices().length == 1 && Mesh.selected[0].getSelectedFaces().length == 1 ) {
+            chec = true;
+        }
+        if ( chec == false ) return;
+
+        if ( UVEditor.isFaceUV() && Mesh.selected.length == 1 && Mesh.selected[0].getSelectedVertices().length == 1 && Mesh.selected[0].getSelectedFaces().length == 1 ) {
+            document.querySelectorAll('.snapCat-collection').forEach( e => e.style.visibility = 'visible' );
+        }
+    }
+
+    function snapDrawOff() {
+        document.querySelectorAll('.snapCat-collection').forEach( e => e.style.visibility = 'hidden' );
+    }
+
+    function snapDrawToggle( selector, state) {
+        document.querySelectorAll( selector ).forEach( e => e.style.visibility = state );
+    }
 
     function pointNearIntpls() {
         let list = Mesh.selected[0].getSelectedVertices();
@@ -126,12 +309,11 @@
         description: 'Easy copy & paste for selected mesh uv coordinate, made manual mapping purfect!',
         about: 'Watch mme get da uv point for ya, it will bee quick, trust mme! Big thx to Gudf. With other small features.',
         tags: [],
-        version: '0.4.20',
+        version: '0.4.23',
         variant: 'desktop',
         onload() {
             button_copycat = new Action('uv_point_copy', {
                 icon: icon_button_copycat,
-                //color: 'x',
                 name: 'Summon UV Copycat',
                 category: 'uv',
                 description: 'Let mme keep dis UV cooconut for ya!',
@@ -143,7 +325,6 @@
 
             button_pastecat = new Action('uv_point_paste', {
                 icon: icon_button_pastecat,
-                //color: 'z',
                 name: 'Summon UV Pastecat',
                 category: 'uv',
                 description: 'Let mme place dis UV cooconut for ya!',
@@ -154,8 +335,8 @@
             });
 
             button_supercat = new Action('uv_point_quick', {
-                icon: icon_button_snapcat,
-                //color: '#FF8C00',
+                icon: icon_button_supercat,
+
                 name: 'Summon UV Supercat',
                 category: 'uv',
                 description: 'Rotate between Copycat and Pastecat! Tho only a few can master dis skill!!',
@@ -165,18 +346,31 @@
                 }
             });
 
-            /* button_snapcat = new Toggle('uv_point_snap', {
+            button_snapcat = new Toggle('uv_point_snap', {
                 icon: icon_dacat,
                 name: 'Summon UV Snapcat',
                 category: 'uv',
                 description: 'Purfectly snapped, as all points sould bee!',
-                condition: () => ( UVEditor.isFaceUV() && Mesh.selected.length == 1 && Mesh.selected[0].getSelectedVertices().length == 1 && Mesh.selected[0].getSelectedFaces().length == 1) ,
+                condition: () => ( UVEditor.isFaceUV() && Mesh.selected.length == 1 && Mesh.selected[0].getSelectedVertices().length == 1 && Mesh.selected[0].getSelectedFaces().length == 1 ),
                 onChange(value) {
                     if (value) {
-                        snapUVPointpls();
+                        document.getElementById('uv_viewport').addEventListener( 'mousemove', snapUVPointpls );
+                        document.getElementById('uv_viewport').addEventListener( 'mouseup', snapFireOnce );
+                        document.getElementById('uv_viewport').addEventListener( 'mouseenter', snapDrawOn );
+                        document.getElementById('uv_viewport').addEventListener( 'mouseleave', snapDrawOff );
+                        console.log('Listen: [drag on]');
+
+                    } else {
+                        document.getElementById('uv_viewport').removeEventListener( 'mousemove', snapUVPointpls );
+                        document.getElementById('uv_viewport').removeEventListener( 'mouseup', snapFireOnce );
+                        document.getElementById('uv_viewport').removeEventListener( 'mouseenter', snapDrawOn );
+                        document.getElementById('uv_viewport').removeEventListener( 'mouseleave', snapDrawOff );
+
+                        if ( document.querySelectorAll('.snapCat-collection') ) { document.querySelectorAll('.snapCat-collection').forEach( e => e.style.visibility = 'hidden' ) };
+                        console.log('Listen: [drag off]');
                     }
                 }
-            }); */
+            });
 
             button_intercat = new Action('mesh_pp_snap', {
                 icon: icon_button_intercat,
@@ -198,7 +392,7 @@
                 }
             });
 
-            /* setting_snapSelf = new Setting('snapself_power', {
+            setting_snapSelf = new Setting('snapself_power', {
                 name: 'Snap urself?',
                 description: "Whether Snapcat consider other UV vertices from the selected vertex's face as snappable points.",
                 value: false
@@ -208,10 +402,9 @@
                 name: 'Snap Power',
                 description: 'Cursor snap distance. From current mouse location, how far can Snapcat search for nearby UV vertices.',
                 type: 'number',
-                value: 5,
-                min: 1,
-                max: 10
-            }); */
+                value: 4,
+                min: 1
+            });
 
             setting_interPower = new Setting('intercat_power', {
                 name: 'Inter Power',
@@ -224,7 +417,7 @@
             MenuBar.menus.uv.addAction(button_copycat);
             MenuBar.menus.uv.addAction(button_pastecat);
             MenuBar.menus.uv.addAction(button_supercat);
-            //MenuBar.menus.uv.addAction(button_snapcat);
+            MenuBar.menus.uv.addAction(button_snapcat);
             MenuBar.menus.edit.addAction(button_intercat);
 
         },
@@ -232,10 +425,14 @@
             button_copycat.delete();
             button_pastecat.delete();
             button_supercat.delete();
-            //button_snapcat.delete();
             button_intercat.delete();
+            button_snapcat.delete();
+            snapUVPointOffpls();
         },
         onuninstall() {
+            snapUVPointOffpls();
+            document.querySelectorAll('.snapCat-collection').forEach( e => e.remove() );
+            snapCircleisNew = true;
             Blockbench.showMessageBox({
                 title: 'Byebye',
                 icon: icon_dacat,
