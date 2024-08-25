@@ -91,6 +91,8 @@
     var pointInfo = {};
     var meshListpls = [];
     var redeemCode = { self: [ 0, 0, -1 ], cat: [ 0, 0, -1 ] };
+    var crushNow;
+
     function snapUVPointpls(){
         let chec = false;
         if ( UVEditor.isFaceUV() && Mesh.selected.length == 1 && Mesh.selected[0].getSelectedVertices().length == 1 && Mesh.selected[0].getSelectedFaces().length == 1 ) {
@@ -152,6 +154,65 @@
         }));
         meshListpls = meshListpls.filter(e => e.meshFaces.length !== 0 );
 
+        let x2 = pointInfo.thisPt[0];
+        let y2 = pointInfo.thisPt[1];
+
+        let keyspls = Object.keys( pointInfo.thisVertices );
+        for ( let i = 0, len = keyspls.length; i < len; i++  ) {
+            let x1 = pointInfo.thisVertices[keyspls[i]][0];
+            let y1 = pointInfo.thisVertices[keyspls[i]][1];
+            let gotDis = getDistance(x2, y2, x1, y1);
+            pointInfo.thisVertices[keyspls[i]][2] = gotDis;
+
+            if ( redeemCode.self[2] == -1 ) {
+                redeemCode.self[0] = x1;
+                redeemCode.self[1] = y1;
+                redeemCode.self[2] = gotDis;
+            } else if ( gotDis < redeemCode.self[2] ) {
+                redeemCode.self[0] = x1;
+                redeemCode.self[1] = y1;
+                redeemCode.self[2] = gotDis;
+            }
+        }
+
+        for ( let i = 0, len = meshListpls.length; i < len; i++ ) {
+            for ( let j = 0, len2 = meshListpls[i].meshFaces.length; j < len2; j++ ) {
+                for ( let k = 0, len3 = meshListpls[i].meshFaces[j].uvPt.length; k < len3; k++ ) {
+                    let x1 = meshListpls[i].meshFaces[j].uvPt[k][0];
+                    let y1 = meshListpls[i].meshFaces[j].uvPt[k][1];
+                    let gotDis = getDistance(x2, y2, x1, y1);
+                    meshListpls[i].meshFaces[j].uvPt[k][2] = gotDis;
+
+                    if ( redeemCode.cat[2] == -1 ) {
+                        redeemCode.cat[0] = x1;
+                        redeemCode.cat[1] = y1;
+                        redeemCode.cat[2] = gotDis;
+                    } else if ( gotDis < redeemCode.cat[2] ) {
+                        redeemCode.cat[0] = x1;
+                        redeemCode.cat[1] = y1;
+                        redeemCode.cat[2] = gotDis;
+                    }
+                }
+            }
+        }
+
+        for ( let i = 0, len = Mesh.all.length; i < len; i++ ) {
+
+            for ( let i2 = 0, len2 = Object.keys(Mesh.all[i].faces).length - 1; i2 <= len2; i2++) {
+                let faceKeyNameListpls = Object.getOwnPropertyNames(Mesh.all[i].faces);
+
+                for ( let i3 = 0, len3 = Object.keys(Mesh.all[i].faces[faceKeyNameListpls[i2]].uv).length -1; i3 <= len3; i3++ ) {
+                    let uvKeyNameListpls = Object.getOwnPropertyNames(Mesh.all[i].faces[faceKeyNameListpls[i2]].uv);
+                    Mesh.all[i].faces[faceKeyNameListpls[i2]].uv[uvKeyNameListpls[i3]].splice(2,1);
+                }
+            }
+        };
+
+        crushNow = redeemCode.cat;
+        if ( setting_snapSelf.value == true && redeemCode.self[2] < redeemCode.cat[2] ) {
+            crushNow = redeemCode.self;
+        }
+
         let getCircleR = uvToFrame( setting_snapPower.value, setting_snapPower.value );
         if ( snapCircleisNew == true ) {
             newElement( 'div', ['id.append', 'uv_frame'], 'snapCirclePls', ['snapCat-collection'], 0, [ ['style','visibility:visible;position:absolute;width:'+getCircleR[0]*2+'px;height:'+getCircleR[0]*2+'px;border: 1px solid red;border-radius:'+getCircleR[0]+'px' ] ] );
@@ -189,66 +250,12 @@
     }
 
     function snapFireOnce() {
-        let chec = false;
-        if ( UVEditor.isFaceUV() && Mesh.selected.length == 1 && Mesh.selected[0].getSelectedVertices().length == 1 && Mesh.selected[0].getSelectedFaces().length == 1 ) {
-            chec = true;
-        }
-        if ( chec == false ) return;
-
-        let x2 = pointInfo.thisPt[0];
-        let y2 = pointInfo.thisPt[1];
-
-        let keypls = Object.keys( pointInfo.thisVertices );
-        for ( let i = 0, len = keypls.length; i < len; i++  ) {
-            let x1 = pointInfo.thisVertices[keypls[i]][0];
-            let y1 = pointInfo.thisVertices[keypls[i]][1];
-            let gotDis = getDistance(x2, y2, x1, y1);
-            pointInfo.thisVertices[keypls[i]][2] = gotDis;
-
-            if ( redeemCode.self[2] == -1 ) {
-                redeemCode.self[0] = x1;
-                redeemCode.self[1] = y1;
-                redeemCode.self[2] = gotDis;
-            } else if ( gotDis < redeemCode.self[2] ) {
-                redeemCode.self[0] = x1;
-                redeemCode.self[1] = y1;
-                redeemCode.self[2] = gotDis;
-            }
-        }
-
-        for ( let i = 0, len = meshListpls.length; i < len; i++ ) {
-            for ( let j = 0, len2 = meshListpls[i].meshFaces.length; j < len2; j++ ) {
-                for ( let k = 0, len3 = meshListpls[i].meshFaces[j].uvPt.length; k < len3; k++ ) {
-                    let x1 = meshListpls[i].meshFaces[j].uvPt[k][0];
-                    let y1 = meshListpls[i].meshFaces[j].uvPt[k][1];
-                    let gotDis = getDistance(x2, y2, x1, y1);
-                    meshListpls[i].meshFaces[j].uvPt[k][2] = gotDis;
-
-                    if ( redeemCode.cat[2] == -1 ) {
-                        redeemCode.cat[0] = x1;
-                        redeemCode.cat[1] = y1;
-                        redeemCode.cat[2] = gotDis;
-                    } else if ( gotDis < redeemCode.cat[2] ) {
-                        redeemCode.cat[0] = x1;
-                        redeemCode.cat[1] = y1;
-                        redeemCode.cat[2] = gotDis;
-                    }
-                }
-            }
-        }
-
-        let keypls2 = Mesh.selected[0].getSelectedFaces()[0];
-        let uvpls2 = Mesh.selected[0].getSelectedVertices()[0];
-
-        let crushNow = redeemCode.cat;
-        if ( setting_snapSelf.value == true && redeemCode.self[2] < redeemCode.cat[2] ) {
-            crushNow = redeemCode.self;
-        }
-
         if ( crushNow[2] <= setting_snapPower.value ) {
+            let keypls = Mesh.selected[0].getSelectedFaces()[0];
+            let uvpls = Mesh.selected[0].getSelectedVertices()[0];
 
-            Mesh.selected[0].faces[keypls2].uv[uvpls2][0] = crushNow[0];
-            Mesh.selected[0].faces[keypls2].uv[uvpls2][1] = crushNow[1];
+            Mesh.selected[0].faces[keypls].uv[uvpls][0] = crushNow[0];
+            Mesh.selected[0].faces[keypls].uv[uvpls][1] = crushNow[1];
 
             Canvas.updateUVs();
             UVEditor.loadData();
@@ -309,7 +316,7 @@
         description: 'Easy copy & paste for selected mesh uv coordinate, made manual mapping purfect!',
         about: 'Watch mme get da uv point for ya, it will bee quick, trust mme! Big thx to Gudf. With other small features.',
         tags: [],
-        version: '0.4.23',
+        version: '0.4.25',
         variant: 'desktop',
         onload() {
             button_copycat = new Action('uv_point_copy', {
