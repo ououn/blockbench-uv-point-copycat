@@ -221,7 +221,11 @@
             newElement( 'div', ['id.append', 'uv_frame'], 'snapLine2', ['snapCat-collection'], 0, [ ['style','visibility:visible;position:absolute;width:50px;height:1px;border: 1px solid blue;top:0;left:0;transform-origin:0 0'] ] );
             snapCircleisNew = false;
         } else {
-            snapDrawToggle( '.snapCat-collection', 'visible');
+            if ( setting_snapDraw.value == true ) {
+                snapDrawToggle( '.snapCat-collection', 'visible');
+            } else {
+                snapDrawToggle( '.snapCat-collection', 'hidden');
+            }
         };
 
         document.getElementById('snapCirclePls').style.width = getCircleR[0]*2 + 'px';
@@ -261,9 +265,6 @@
             UVEditor.loadData();
         }
 
-        console.log( '[pointInfo] with distance', '\n', pointInfo );
-        console.log( '[meshListpls] with distance', '\n', meshListpls );
-        console.log( '[redeemCode]', '\n', redeemCode );
     }
 
     function getDistance(x2, y2, x1, y1) {
@@ -285,6 +286,7 @@
             chec = true;
         }
         if ( chec == false ) return;
+        if ( setting_snapDraw == false ) return;
 
         if ( UVEditor.isFaceUV() && Mesh.selected.length == 1 && Mesh.selected[0].getSelectedVertices().length == 1 && Mesh.selected[0].getSelectedFaces().length == 1 ) {
             document.querySelectorAll('.snapCat-collection').forEach( e => e.style.visibility = 'visible' );
@@ -316,7 +318,7 @@
         description: 'Easy copy & paste for selected mesh uv coordinate, made manual mapping purfect!',
         about: 'Watch mme get da uv point for ya, it will bee quick, trust mme! Big thx to Gudf. With other small features.',
         tags: [],
-        version: '0.4.25',
+        version: '0.4.26',
         variant: 'desktop',
         onload() {
             button_copycat = new Action('uv_point_copy', {
@@ -365,7 +367,6 @@
                         document.getElementById('uv_viewport').addEventListener( 'mouseup', snapFireOnce );
                         document.getElementById('uv_viewport').addEventListener( 'mouseenter', snapDrawOn );
                         document.getElementById('uv_viewport').addEventListener( 'mouseleave', snapDrawOff );
-                        console.log('Listen: [drag on]');
 
                     } else {
                         document.getElementById('uv_viewport').removeEventListener( 'mousemove', snapUVPointpls );
@@ -374,7 +375,7 @@
                         document.getElementById('uv_viewport').removeEventListener( 'mouseleave', snapDrawOff );
 
                         if ( document.querySelectorAll('.snapCat-collection') ) { document.querySelectorAll('.snapCat-collection').forEach( e => e.style.visibility = 'hidden' ) };
-                        console.log('Listen: [drag off]');
+
                     }
                 }
             });
@@ -392,16 +393,24 @@
 
             setting_copypasteStatus = new Setting('copypaste_power', {
                 name: 'Copypaste Status Bar',
-                description: 'Whether to display current copy/pastecat status at bottom status bar.',
+                description: 'Display current copy/pastecat status at bottom status bar.',
                 value: true,
                 onChange(e) {
                     if ( e == false ) { Blockbench.setStatusBarText( Project.name ) };
                 }
             });
 
+            setting_interPower = new Setting('intercat_power', {
+                name: 'Inter Power',
+                description: "Nearest value for the position of selected mesh's vertices round to.",
+                type: 'number',
+                value: 1,
+                min: 0.001
+            });
+
             setting_snapSelf = new Setting('snapself_power', {
-                name: 'Snap urself?',
-                description: "Whether Snapcat consider other UV vertices from the selected vertex's face as snappable points.",
+                name: 'Snap Urself?',
+                description: "Treat other UV vertices from current face as snap-able points.",
                 value: false
             });
 
@@ -413,12 +422,10 @@
                 min: 1
             });
 
-            setting_interPower = new Setting('intercat_power', {
-                name: 'Inter Power',
-                description: "Nearest value for the position of selected mesh's vertices round to.",
-                type: 'number',
-                value: 1,
-                min: 0.001
+            setting_snapDraw = new Setting('snapcat_doodle', {
+                name: 'Snap Preview',
+                description: "Display snap power range circle and preview connected lines.",
+                value: true
             });
 
             MenuBar.menus.uv.addAction(button_copycat);
