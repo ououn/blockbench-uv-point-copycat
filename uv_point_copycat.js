@@ -479,14 +479,6 @@
             MenuBar.menus.uv.addAction(button_supercat);
             MenuBar.menus.uv.addAction(button_snapcat);
             MenuBar.menus.edit.addAction(button_intercat);
-
-            Blockbench.showMessageBox({
-                title: 'Hallo there',
-                icon: icon_dacat,
-                message: "Don't furget to check all teh options in plugin setting page!",
-                buttons: ['K']
-            })
-
         },
         onunload() {
             button_copycat.delete();
@@ -495,6 +487,14 @@
             button_intercat.delete();
             button_snapcat.delete();
             snapUVPointOffpls();
+        },
+        oninstall() {
+            Blockbench.showMessageBox({
+                title: 'Hallo there',
+                icon: icon_dacat,
+                message: "Don't furget to check all teh options in plugin setting page!",
+                buttons: ['K']
+            })
         },
         onuninstall() {
             snapUVPointOffpls();
